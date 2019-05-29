@@ -8,3 +8,11 @@
           public static void flipNHeads(int nFLips)  
           public static void clock()  
 
+2.  [Lab 2: Arrays, Loops, Imports, ArrayLists](./basiclibrary)
+
+        Library.java
+
+          public static int[] roll(int rollNumber)  
+          public static boolean containsDuplicates(int[] input)  
+          public static float calculateAverage(int[] input)  
+          public static float lowestAverage(int[][] input)
