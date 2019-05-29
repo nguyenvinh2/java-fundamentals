@@ -56,4 +56,76 @@ public class LibraryTest {
         assertFalse("The array is empty", Library.containsDuplicates(testArray));
 
     }
+
+    //Testing portion for calculateAverage
+
+    @Test
+    public void testAverageValueInt() {
+        int[] testArray = new int[]{1, 2, 3, 4, 5};
+        assertEquals(3, Library.calculateAverage(testArray), 0);
+    }
+
+    @Test
+    public void testAverageValueRational() {
+        int[] testArray = new int[]{1, 2, 3, 4};
+        assertEquals(2.5, Library.calculateAverage(testArray), 0);
+    }
+
+    @Test
+    public void testEmptyAverage() {
+        int[] testArray = new int[5];
+        assertEquals(0, Library.calculateAverage(testArray), 0);
+    }
+
+    @Test
+    public void testNullAverage() {
+        int[] testArray = new int[0];
+        assertEquals(0, Library.calculateAverage(testArray), 0);
+    }
+
+    @Test
+    public void testAverageValueNegative() {
+        int[] testArray = new int[]{-1, -2, -3, -4};
+        assertEquals(-2.5, Library.calculateAverage(testArray), 0);
+    }
+
+    //This testing portion is for lowestAverage
+    @Test
+    public void testLowestAverage() {
+        int[][] testArray = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+        assertEquals(57, Library.lowestAverage(testArray), 0);
+    }
+
+    @Test
+    public void testNullLowestAverage() {
+        int[][] testArray = new int[][]{};
+        assertEquals(0, Library.lowestAverage(testArray), 0);
+    }
+
+    @Test
+    public void testNegativeLowestAverage() {
+        int[][] testArray = {
+                {-66, -64, -58, -65, -71, -57, -60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+        assertEquals(-63, Library.lowestAverage(testArray), 0);
+    }
+
+    @Test
+    public void testSingleNullArray() {
+        int[][] testArray = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+        assertEquals(57, Library.lowestAverage(testArray), 0);
+    }
 }
