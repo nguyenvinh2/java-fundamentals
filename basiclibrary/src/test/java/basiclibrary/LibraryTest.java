@@ -4,11 +4,56 @@
 package basiclibrary;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class LibraryTest {
-    @Test public void testSomeLibraryMethod() {
-        Library classUnderTest = new Library();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+    //Testing portion for dice method
+    @Test
+    public void testRollLength() {
+        int[] testRoll = Library.roll(6);
+        assertEquals(6, testRoll.length);
+    }
+
+    @Test
+    public void testZeroRoll() {
+        int[] testRoll = Library.roll(0);
+        assertEquals(0, testRoll.length);
+    }
+
+    @Test
+    public void testUpperBoundary() {
+        int[] testRoll = Library.roll(10);
+        for(int i = 0; i < testRoll.length; i++) {
+            assertTrue(testRoll[i] < 7);
+        }
+    }
+
+    @Test
+    public void testLowerBoundary() {
+        int[] testRoll = Library.roll(10);
+        for(int i = 0; i < testRoll.length; i++) {
+            assertTrue(testRoll[i] > 0);
+        }
+    }
+
+    //Testing portion for containsDuplicates method
+    @Test
+    public void testContainsDuplicatesTrue() {
+        int[] testArray = new int[]{1, 2, 3, 4, 5, 6, 1};
+        assertTrue("There are duplicates in here", Library.containsDuplicates(testArray));
+    }
+
+    @Test
+    public void testContainsDuplicatesFalse() {
+        int[] testArray = new int[]{1, 2, 3, 4, 5, 6};
+        assertFalse("There are no duplicates", Library.containsDuplicates(testArray));
+    }
+
+    @Test
+    public void testEmptyArray() {
+        int[] testArray = new int[]{};
+        assertFalse("The array is empty", Library.containsDuplicates(testArray));
+
     }
 }
