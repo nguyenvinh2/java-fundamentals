@@ -3,11 +3,11 @@
  */
 package basiclibrary;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Library {
     public static void main(String[] args) {
-        int[] input = new int[]{1, 7, 2, 9, 7, 3};
+        int[] input = new int[]{1, 2, 3, 4, 5};
         System.out.println(containsDuplicates(input));
         int[] dice = roll(6);
         System.out.println(Arrays.toString(dice));
@@ -21,6 +21,26 @@ public class Library {
         };
 
         System.out.println(lowestAverage(weeklyMonthTemperatures));
+        analyzeWeatherData(weeklyMonthTemperatures);
+
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Shrub");
+        votes.add("Shrub");
+
+
+
+        List<String> winner = tally(votes);
+        System.out.println(winner + " received the most votes!");
     }
 
     public static int[] roll(int rollNumber) {
@@ -76,4 +96,55 @@ public class Library {
             return 0;
         }
     }
+
+    public static String analyzeWeatherData(int[][] weather) {
+        String output = "";
+        HashSet<Integer> data = new HashSet<>();
+        for(int i = 0; i < weather.length; i++) {
+            for(int j = 0; j < weather[i].length; j++) {
+                data.add(weather[i][j]);
+            }
+        }
+
+        int lowTemp = Collections.min(data);
+        int highTemp = Collections.max(data);
+
+        System.out.println("High: " + highTemp);
+        System.out.println("Low: " + lowTemp);
+        output += "High: " + highTemp + "\n";
+        output += "Low: " + lowTemp + "\n";
+
+        for(int i = lowTemp; i <= highTemp; i++) {
+            if(!data.contains(i)) {
+                System.out.println("Never saw temperature: " + i);
+                output += "Never saw temperature: " + i + "\n";
+            }
+        }
+
+        return output;
+    }
+
+    public static List<String> tally(List<String> input) {
+        HashMap<String, Integer> tallyList = new HashMap<>();
+        for(int i = 0; i < input.toArray().length; i++) {
+            if(!tallyList.containsKey(input.toArray()[i])) {
+                tallyList.put(input.toArray()[i].toString(), 1);
+            } else {
+                tallyList.put(input.toArray()[i].toString(), tallyList.get(input.toArray()[i].toString()) + 1);
+            }
+        }
+
+        int maxValue = Collections.max(tallyList.values());
+
+        List<String> winner = new ArrayList<>();
+
+        for (Map.Entry<String, Integer> candidate : tallyList.entrySet()) {
+            if (candidate.getValue()==maxValue) {
+                winner.add(candidate.getKey());
+            }
+        }
+
+        return winner;
+    }
+
 }
