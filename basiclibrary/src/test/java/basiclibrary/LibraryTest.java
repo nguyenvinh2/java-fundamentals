@@ -141,6 +141,8 @@ public class LibraryTest {
         };
 
         String expectedOutput = "";
+        expectedOutput += "High: 71\n";
+        expectedOutput += "Low: 57\n";
 
         int[] missingNo = new int[] {59,61,62,63,67,68,69,70};
 
@@ -174,6 +176,8 @@ public class LibraryTest {
         };
 
         String expectedOutput = "";
+        expectedOutput += "High: 79\n";
+        expectedOutput += "Low: 66\n";
 
         int[] missingNo = new int[] {};
 

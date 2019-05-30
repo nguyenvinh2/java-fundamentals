@@ -111,6 +111,8 @@ public class Library {
 
         System.out.println("High: " + highTemp);
         System.out.println("Low: " + lowTemp);
+        output += "High: " + highTemp + "\n";
+        output += "Low: " + lowTemp + "\n";
 
         for(int i = lowTemp; i <= highTemp; i++) {
             if(!data.contains(i)) {
