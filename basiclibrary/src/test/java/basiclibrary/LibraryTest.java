@@ -5,6 +5,10 @@ package basiclibrary;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 public class LibraryTest {
@@ -127,5 +131,100 @@ public class LibraryTest {
                 {65, 56, 55, 52, 55, 62, 57}
         };
         assertEquals(57, Library.lowestAverage(testArray), 0);
+    }
+    //This test portion is for analyzeWeatherData
+    @Test
+    public void testAnalyzeWeatherDataNormal() {
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {66, 64, 58, 65, 71, 57, 60},
+        };
+
+        String expectedOutput = "";
+
+        int[] missingNo = new int[] {59,61,62,63,67,68,69,70};
+
+        for(int i = 0; i < missingNo.length; i++) {
+            expectedOutput += "Never saw temperature: " + missingNo[i] + "\n";
+        }
+
+        assertEquals(expectedOutput, Library.analyzeWeatherData(weeklyMonthTemperatures));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testAnalyzeWeatherDataNull() {
+        int[][] weeklyMonthTemperatures = {};
+
+        String expectedOutput = "";
+
+        int[] missingNo = new int[] {59,61,62,63,67,68,69,70};
+
+        for(int i = 0; i < missingNo.length; i++) {
+            expectedOutput += "Never saw temperature: " + missingNo[i] + "\n";
+        }
+
+        assertEquals(expectedOutput, Library.analyzeWeatherData(weeklyMonthTemperatures));
+    }
+
+    @Test
+    public void testAnalyzeWeatherDataNoMissingNumber() {
+        int[][] weeklyMonthTemperatures = {
+                {66, 67, 68, 69, 70, 71, 72},
+                {73, 74, 75, 76, 77, 78, 79},
+        };
+
+        String expectedOutput = "";
+
+        int[] missingNo = new int[] {};
+
+        for(int i = 0; i < missingNo.length; i++) {
+            expectedOutput += "Never saw temperature: " + missingNo[i] + "\n";
+        }
+
+        assertEquals(expectedOutput, Library.analyzeWeatherData(weeklyMonthTemperatures));
+    }
+
+    //this testing portion is for the tally method
+
+    @Test
+    public void testTallyNormal() {
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+        votes.add("Shrub");
+
+        List<String> expected = new ArrayList<>();
+        expected.add("Bush");
+        assertEquals(expected, Library.tally(votes));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testTallyNull() {
+        List<String> votes = new ArrayList<>();
+        List<String> expected = new ArrayList<>();
+        assertEquals(expected, Library.tally(votes));
+    }
+
+    @Test
+    public void testTallyMultipleWinners() {
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Shrub");
+        votes.add("Shrub");
+
+        List<String> expected = new ArrayList<>();
+        expected.add("Bush");
+        expected.add("Shrub");
+        assertEquals(expected, Library.tally(votes));
     }
 }
