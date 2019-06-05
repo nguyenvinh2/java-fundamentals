@@ -53,10 +53,15 @@ public class Business {
     }
 
     public void addReview(Review review) {
-        if(!reviews.contains(review)) {
-            reviews.add(review);
-            calculateStars();
-            reviews.get(reviews.size() -1).businessName = this.name;
+        if(review instanceof MovieReview && !(this instanceof Theater)) {
+            System.out.println("Cannot add a movie review to a theater");
+        } else {
+
+            if (!reviews.contains(review)) {
+                reviews.add(review);
+                calculateStars();
+                reviews.get(reviews.size() - 1).businessName = this.name;
+            }
         }
     }
 }

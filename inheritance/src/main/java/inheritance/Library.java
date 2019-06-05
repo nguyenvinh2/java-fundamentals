@@ -6,9 +6,10 @@ package inheritance;
 public class Library {
     public static void main(String[] args) {
         Shop test = new Shop("heyye", 5);
-        test.addReview(new Review("newman", 4));
+        test.addReview(new MovieReview("newman","monet",4));
         test.addReview(new Review("newman2", 3));
         test.addReview(new Review("newesfman2", 2));
         System.out.println(test);
     }
 }
+

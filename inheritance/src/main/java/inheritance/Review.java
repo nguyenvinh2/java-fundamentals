@@ -9,6 +9,10 @@ public class Review {
     public Review() {
     }
 
+    public Review(String author) {
+        this.author = author;
+    }
+
     public Review(String author, int rating) {
         setStars(rating);
         this.author = author;

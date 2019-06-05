@@ -2,24 +2,25 @@ package inheritance;
 
 import org.junit.Test;
 
+import java.nio.BufferOverflowException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class RestaurantTest {
+public class BusinessTest {
 
     @Test
     public void constructTest() {
         String name = "Test";
-        Restaurant test = new Restaurant(name);
+        Business test = new Business(name);
         assertEquals(name, test.name);
     }
 
     @Test
     public void getterSetterPriceTest() {
         String name = "Test";
-        Restaurant test = new Restaurant(name);
+        Business test = new Business(name);
         test.setPrice(4);
         assertEquals("$$$$", test.getPrice().toString());
     }
@@ -27,20 +28,20 @@ public class RestaurantTest {
     @Test(expected = IllegalArgumentException.class)
     public void priceTestFailUpper() {
         String name = "Test";
-        Restaurant test = new Restaurant(name);
+        Business test = new Business(name);
         test.setPrice(7);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void priceTestFailLower() {
         String name = "Test";
-        Restaurant test = new Restaurant(name);
+        Business test = new Business(name);
         test.setPrice(0);
     }
 
     @Test
     public void addReview() {
-        Restaurant test = new Restaurant("Test");
+        Business test = new Business("Test");
         Review reviewTest = new Review("heyoo");
         test.addReview(reviewTest);
         List expected = new ArrayList<>();
@@ -50,7 +51,7 @@ public class RestaurantTest {
 
     @Test
     public void addReviewDuplicateTest() {
-        Restaurant test = new Restaurant("Test");
+        Business test = new Business("Test");
         Review reviewTest = new Review("heyoo");
         test.addReview(reviewTest);
         test.addReview(reviewTest);
@@ -61,7 +62,7 @@ public class RestaurantTest {
 
     @Test
     public void averageTest() {
-        Restaurant test = new Restaurant("Test");
+        Business test = new Business("Test");
         Review reviewTest = new Review("heyoo",5);
         Review reviewTestTwo = new Review("heyoo",1);
         double rating = (reviewTest.getStars() + reviewTestTwo.getStars())/2;
@@ -72,7 +73,7 @@ public class RestaurantTest {
 
     @Test
     public void averageTestDuplicate() {
-        Restaurant test = new Restaurant("Test");
+        Business test = new Business("Test");
         Review reviewTest = new Review("heyoo",5);
         Review reviewTestTwo = new Review("heyoo",1);
         double rating = (reviewTest.getStars() + reviewTestTwo.getStars())/2;
@@ -82,10 +83,4 @@ public class RestaurantTest {
         assertEquals(rating, test.getRating(), 0);
     }
 
-    @Test
-    public void toStringTest() {
-        String name = "Test";
-        Restaurant test = new Restaurant(name);
-        assertEquals("Restaurant Name: " + name + ", Average Rating: " + test.getRating() + " stars, Price: " + test.getPrice() + ", Reviews: " + test.reviews, test.toString());
-    }
 }

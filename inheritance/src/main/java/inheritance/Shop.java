@@ -21,7 +21,7 @@ public class Shop extends Business {
     }
 
     public String toString() {
-        String shopInfo = "Shop Name: " + name + ", Average Rating: " + getRating() + " stars, Price: " + getPrice() + ", Reviews: " + reviews;
+        String shopInfo = "Shop Name: " + name + ", Average Rating: " + getRating() + " stars, Price: " + getPrice() + ", Description: " + description +  ", Reviews: " + reviews;
         return shopInfo;
     }
 }
