@@ -10,14 +10,14 @@ public class ReviewTest {
     public void constructTest() {
         String name = "Test";
         Review test = new Review(name);
-        assertEquals(name, test.name);
+        assertEquals(name, test.author);
     }
 
     @Test
     public void toStringTest() {
         String name = "Test";
         Review test = new Review(name);
-        assertEquals("Review for: " + name + " - Author: " + test.author + " - Review Rating: " + test.getStars(), test.toString());
+        assertEquals("Review for: " + null + " - Author: " + test.author + " - Review Rating: " + test.getStars() + " - Body: " + test.body, test.toString());
     }
 
     @Test
